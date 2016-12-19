@@ -3,6 +3,8 @@
   <%= f.text_field :monument_name %><br>
   <%= f.submit "Search Monuments" %><br><br>
 <% end %>
-
+<% @response['results'].each do |res| %>
+       <%= res['formatted_address'] %>
+<% end %>
 
 

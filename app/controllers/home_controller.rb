@@ -7,9 +7,9 @@ class HomeController < ApplicationController
       @monuments = Monument.all
     end
 
-    def show
-      @monument = Monument.find(params[:id])
-    end
+    # def show
+    #   @monument = Monument.find(params[:id])
+    # end
 
     def edit
 
@@ -27,7 +27,17 @@ class HomeController < ApplicationController
     end
 
     def new
-      puts @new = @temp
+      @response
+    end
+
+    def data
+      # @monument = params['name']
+      # puts @monument
+      # @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+@monument+"&key=AIzaSyAtothoHxQt87NlqSMvHwP6Q6MJ28vP0Y4"
+      # @response = HTTParty.get(@url)
+      # @response['results'].each do |res|
+      #   puts @temp = res['formatted_address']
+      # end
     end
 
     def update
