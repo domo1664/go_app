@@ -1,4 +1,4 @@
-class Trip < ApplicationRecord
+class Trip < ActiveRecord::Base
   belongs_to :user
   has_many :monuments
 end

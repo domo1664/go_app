@@ -1,0 +1,8 @@
+<%= form_for :home, method: 'post', url: {action: 'create'} do |f| %>
+  <%= label(:home, 'Monument') %><br>
+  <%= f.text_field :monument_name %><br>
+  <%= f.submit "Search Monuments" %><br><br>
+<% end %>
+
+
+

@@ -1,13 +1,17 @@
 <% content_for :top_content do %>
 <% if user_signed_in? %>
-I like puppies.
+<div class="jumbotron">
+  <div class="container">
+      <center><%= link_to 'Search', 'home/new', class: 'btn btn-primary btn-lg' %></center>
+  </div>
+</div>
 <% else %>
 <div class="jumbotron">
   <div class="container">
     <h1>Welcome!</h1>
     <p>Register to get started.</p>
     <p>
-      <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      <%= link_to 'Register', new_user_registration_path,method: :get, class: 'btn btn-primary btn-lg' %>
     </p>
   </div>
 </div>
