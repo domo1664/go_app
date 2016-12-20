@@ -7,37 +7,24 @@ class HomeController < ApplicationController
       @monuments = Monument.all
     end
 
-    # def show
-    #   @monument = Monument.find(params[:id])
-    # end
-
-    def edit
-
+    def show
+      @monument = Monument.find(params[:id])
     end
 
     def create
       home = params['home']
-      monument = home['monument_name']
-      @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+monument+"&key=AIzaSyAtothoHxQt87NlqSMvHwP6Q6MJ28vP0Y4"
+      city = home['city']
+      @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+city+"&key=AIzaSyAaTxKO83nQMSzEMq5T-WqU9thoXryHcaM"
       @response = HTTParty.get(@url)
-      @response['results'].each do |res|
-        @temp = res['formatted_address']
-      end
+      mon_name = params[:mon][:monu]
+      address = params[:mon][:address]
+      pic = params[:mon][:pic]
+      puts mon_name, address, pic
       render 'new'
     end
 
     def new
       @response
-    end
-
-    def data
-      # @monument = params['name']
-      # puts @monument
-      # @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+@monument+"&key=AIzaSyAtothoHxQt87NlqSMvHwP6Q6MJ28vP0Y4"
-      # @response = HTTParty.get(@url)
-      # @response['results'].each do |res|
-      #   puts @temp = res['formatted_address']
-      # end
     end
 
     def update
