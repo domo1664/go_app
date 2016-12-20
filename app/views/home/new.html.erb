@@ -6,7 +6,8 @@
 
 <% if @response != nil%>
   <% @response['results'].each do |res| %>
-    <%= form_for :mon, method: 'post', url: {action: 'create'} do |f| %>
+    <%= form_for :home, method: 'post', url: {action: "create"} do |f| %>
+
       Name: <%= res['name'] %><br>
       Address: <%= res['formatted_address'] %><br>
       <% @string = res['photos']
@@ -21,9 +22,10 @@
           @url = @front.to_s + @mid.to_s + @back.to_s
         %>
       Image: <br> <img src = <%= @url %> > <br>
-      <%= f.hidden_field :monu, res['name'] %>
-      <%= f.hidden_field :address, res['formetted_address'] %>
-      <%= f.hidden_field :pic, @url %>
+      <%= f.hidden_field :name, :value => res['name'] %>
+      <%= f.hidden_field :cityName, :value => @store_city %>
+      <%= f.hidden_field :address, :value => res['formatted_address'] %>
+      <%= f.hidden_field :pic, :value => @url %>
       <%= f.submit "Fav's", class: 'btn btn-primary btn-sm' %><br><br>
     <% end %>
   <% end %>

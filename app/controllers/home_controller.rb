@@ -13,13 +13,34 @@ class HomeController < ApplicationController
 
     def create
       home = params['home']
-      city = home['city']
-      @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+city+"&key=AIzaSyAaTxKO83nQMSzEMq5T-WqU9thoXryHcaM"
-      @response = HTTParty.get(@url)
-      mon_name = params[:mon][:monu]
-      address = params[:mon][:address]
-      pic = params[:mon][:pic]
-      puts mon_name, address, pic
+      @city = home['city']
+      if @city != nil
+        @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+@city+"&key=AIzaSyAaTxKO83nQMSzEMq5T-WqU9thoXryHcaM"
+        @response = HTTParty.get(@url)
+        @store_city = @city
+      else
+        mon_name = home['name']
+        address = home['address']
+        pic = home['pic']
+        city = home['cityName']
+        puts mon_name = mon_name.to_s
+        puts address = address.to_s
+        puts pic = pic.to_s
+        puts city = city.to_s
+        m = Monument.new
+        t = Trip.new
+        m.monument_name = mon_name
+        m.address = address
+        m.image = pic
+        m.comment = ""
+        u = User.find(current_user.id)
+        m.user = u
+        t.city_name = city
+        t.user = u
+        t.save
+        m.trip = t
+        m.save
+      end
       render 'new'
     end
 
