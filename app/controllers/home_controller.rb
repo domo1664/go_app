@@ -4,7 +4,11 @@ class HomeController < ApplicationController
     # get their id with the current_user method
     # Then do @monuments/@trips = Trips.where (user.id = id etc etc)
     def index
-      @monuments = Monument.all
+      if user_signed_in?
+        @monuments = Monument.where(user_id: current_user.id)
+      else
+
+      end
     end
 
     def show
