@@ -1,2 +1,14 @@
-Name: <%= @monument['monument_name'] %> <br>
+Name: <%= @monument['monument_name'] %> <br><br>
 Address: <%= @monument['address'] %> <br><br>
+Image: <br><br> <img src= <%= @monument['image'] %> > <br><br>
+Comment: <%= @monument['comment'] %> <br><br>
+
+<%= form_for :monument, method: 'patch', url: {action: 'update'} do |f| %>
+  <%= label(:monument, 'Name') %><br>
+  <%= f.text_field :name, :value => @monument['monument_name'] %><br>
+  <%= label(:monument, 'Address') %><br>
+  <%= f.text_field :address, :value => @monument['address'] %><br>
+  <%= label(:monument, 'Comment') %><br>
+  <%= f.text_field :comment, :value => @monument['comment'] %><br>
+  <%= f.submit "Search", class: 'btn btn-primary btn-sm'%><br><br>
+<% end %>

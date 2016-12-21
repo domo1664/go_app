@@ -53,7 +53,11 @@ class HomeController < ApplicationController
     end
 
     def update
-
+      mon = params['monument']
+      Monument.update(monument_name: mon['name'],
+                      address: mon['address'],
+                      comment: mon['comment'])
+      redirect_to(:back)
     end
 
     def destroy
