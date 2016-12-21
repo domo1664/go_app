@@ -18,7 +18,7 @@
           @sub = @sub.to_s.gsub!(/.*?(?=>")/im, "")
           @mid = @sub.to_s[2..-2]
           @front = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference="
-          @back = "&key=AIzaSyBSwXn_BJe18ejLsao-5RYPgkhVGKXuZAQ"
+          @back = "&key=AIzaSyBhppvWek2UfzL7YZMzKCP4VKwiJ5P1b-s"
           @url = @front.to_s + @mid.to_s + @back.to_s
         %>
       Image: <br> <img src = <%= @url %> > <br>

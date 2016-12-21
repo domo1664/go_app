@@ -19,7 +19,7 @@ class HomeController < ApplicationController
       home = params['home']
       @city = home['city']
       if @city != nil
-        @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+@city+"&key=AIzaSyBSwXn_BJe18ejLsao-5RYPgkhVGKXuZAQ"
+        @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+@city+"&key=AIzaSyBhppvWek2UfzL7YZMzKCP4VKwiJ5P1b-s"
         @response = HTTParty.get(@url)
         @store_city = @city
       else
@@ -54,8 +54,10 @@ class HomeController < ApplicationController
 
     def update
       mon = params['monument']
-      Monument.update(monument_name: mon['name'],
+      monu = Monument.find_by(monument_name: mon['name'])
+      monu.update(monument_name: mon['name'],
                       address: mon['address'],
+                      image: mon['pic'],
                       comment: mon['comment'])
       redirect_to(:back)
     end
