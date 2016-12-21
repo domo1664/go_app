@@ -3,6 +3,13 @@
 <div class="jumbotron">
   <div class="container">
       <center><%= link_to 'Search', 'home/new', class: 'btn btn-primary btn-lg' %></center>
+      <% @monuments.each do |mon|%>
+        <img style= "width:300px" src = <%= mon['image'] %> > <br>
+        Name: <%= mon['monument_name'] %> <br><br>
+        <a href= "home/<%= mon['id'] %>" class= 'btn btn-primary btn-xs' > View / Edit </a>
+        <a href= "home/<%= mon['id'] %>" data-method='delete' class= 'btn btn-primary btn-xs' > Delete Trip </a>
+        <br><br><br>
+      <% end %>
   </div>
 </div>
 <% else %>

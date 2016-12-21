@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       home = params['home']
       @city = home['city']
       if @city != nil
-        @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+@city+"&key=AIzaSyAaTxKO83nQMSzEMq5T-WqU9thoXryHcaM"
+        @url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=monuments+in+"+@city+"&key=AIzaSyBSwXn_BJe18ejLsao-5RYPgkhVGKXuZAQ"
         @response = HTTParty.get(@url)
         @store_city = @city
       else
@@ -23,10 +23,10 @@ class HomeController < ApplicationController
         address = home['address']
         pic = home['pic']
         city = home['cityName']
-        puts mon_name = mon_name.to_s
-        puts address = address.to_s
-        puts pic = pic.to_s
-        puts city = city.to_s
+        mon_name = mon_name.to_s
+        address = address.to_s
+        pic = pic.to_s
+        city = city.to_s
         m = Monument.new
         t = Trip.new
         m.monument_name = mon_name
@@ -53,6 +53,7 @@ class HomeController < ApplicationController
     end
 
     def destroy
-
+      Monument.destroy(params['id'])
+      redirect_to(:back)
     end
 end
